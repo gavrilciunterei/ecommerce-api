@@ -3,11 +3,12 @@ const User = require('../models/user');
 
 var controller = {
   signup: function (req, res) {
-    const use = new User(req.body);
+    //console.log(req.body);
+    const user = new User(req.body);
     user.save((err, user) => {
       if (err) {
         return res.status(400).json({
-          error,
+          err,
         });
       }
       res.json({

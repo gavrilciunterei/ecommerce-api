@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const uuidv1 = require('uuid/v1');
+
 const Schema = mongoose.Schema;
 
 const userSchema = Schema(
@@ -42,7 +43,7 @@ const userSchema = Schema(
 userSchema
   .virtual('password')
   .set(function (password) {
-    this.password = password;
+    this._password = password;
     this.salt = uuidv1();
     this.hashed_password = this.encryptPassword(password);
   })
