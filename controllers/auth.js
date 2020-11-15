@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken'); // to generate signin token
-const expressJwt = require('express-jwt'); //for authorization check
+const expressJwt = require('express-jwt'); // for authorization check
 const { errorHandler } = require('../helpers/dbErrorHandler');
 
 var controller = {
@@ -20,6 +20,7 @@ var controller = {
       });
     });
   },
+
   signin: function (req, res) {
     // find the user based on email
     const { email, password } = req.body;
@@ -46,10 +47,17 @@ var controller = {
       return res.json({ token, user: { _id, name, email, role } });
     });
   },
+
   signout: function (req, res) {
     res.clearCookie('t');
     res.json({ message: 'Signout success' });
   },
+
+  requireSignin: expressJwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'auth',
+    algorithms: ['HS256'],
+  }),
 };
 
 module.exports = controller;
