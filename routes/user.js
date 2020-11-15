@@ -4,5 +4,7 @@ const controller = require('../controllers/user');
 const { userSignupValidator } = require('../validator/index');
 
 router.post('/signup', userSignupValidator, controller.signup);
+router.post('/signin', controller.signin);
+router.get('/signout', controller.signout);
 
 module.exports = router;
