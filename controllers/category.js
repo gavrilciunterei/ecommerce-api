@@ -13,6 +13,55 @@ var controller = {
       res.json({ data });
     });
   },
+  categoryById: function (req, res, next, id) {
+    Category.findById(id).exec((err, category) => {
+      if (err || !category) {
+        return res.status(400).json({
+          err: 'Category does not exist',
+        });
+      }
+      req.category = category;
+      next();
+    });
+  },
+  read: function (req, res) {
+    return res.json(req.category);
+  },
+  update: function (req, res) {
+    const category = req.category;
+    category.name = req.body.name;
+    category.save((err, data) => {
+      if (err) {
+        return res.status(400).json({
+          err: errorHandler(err),
+        });
+      }
+      res.json(data);
+    });
+  },
+  remove: function (req, res) {
+    const category = req.category;
+    category.remove((err, data) => {
+      if (err) {
+        return res.status(400).json({
+          err: errorHandler(err),
+        });
+      }
+      res.json({
+        message: 'Category deleted',
+      });
+    });
+  },
+  list: function (req, res) {
+    Category.find().exec((err, data) => {
+      if (err) {
+        return res.status(400).json({
+          err: errorHandler(err),
+        });
+      }
+      res.json(data);
+    });
+  },
 };
 
 module.exports = controller;
