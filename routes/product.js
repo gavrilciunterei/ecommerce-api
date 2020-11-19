@@ -26,6 +26,7 @@ router.put(
   isAdmin,
   controller.update
 );
+router.get('/products', controller.list);
 
 router.param('userId', userById);
 router.param('productId', controller.productById);
