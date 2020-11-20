@@ -170,6 +170,17 @@ var controller = {
         res.json(products);
       });
   },
+
+  listCategories: function (req, res) {
+    Product.distinct('category', {}, (err, categories) => {
+      if (err) {
+        return res.status(400).json({
+          err: 'Products not found',
+        });
+      }
+      res.json(categories);
+    });
+  },
 };
 
 module.exports = controller;
