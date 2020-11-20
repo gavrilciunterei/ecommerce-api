@@ -29,6 +29,7 @@ router.put(
 router.get('/products', controller.list);
 router.get('/products/related/:productId', controller.listRelated);
 router.get('/products/categories', controller.listCategories);
+router.post('/products/by/search', controller.listBySearch);
 
 router.param('userId', userById);
 router.param('productId', controller.productById);
