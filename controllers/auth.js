@@ -10,7 +10,7 @@ var controller = {
     user.save((err, user) => {
       if (err) {
         return res.status(400).json({
-          err: errorHandler(err),
+          error: errorHandler(err),
         });
       }
       user.salt = undefined;
@@ -27,14 +27,14 @@ var controller = {
     User.findOne({ email }, (err, user) => {
       if (err || !user) {
         return res.status(400).json({
-          err: 'User with that email does not exists',
+          error: 'User with that email does not exists',
         });
       }
       // if user is found make sure that email and password match
       // create atuthenticate method in user model
       if (!user.authenticate(password)) {
         return res.status(401).json({
-          err: 'Email and password dont match',
+          error: 'Email and password dont match',
         });
       }
 

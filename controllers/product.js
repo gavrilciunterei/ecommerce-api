@@ -45,7 +45,7 @@ var controller = {
       product.save((err, result) => {
         if (err) {
           return res.status(400).json({
-            err: errorHandler(err),
+            error: errorHandler(err),
           });
         }
         res.json(result);
@@ -75,7 +75,7 @@ var controller = {
     product.remove((err, deleteProduct) => {
       if (err) {
         return res.status(400).json({
-          err: errorHandler(err),
+          error: errorHandler(err),
         });
       }
       res.json({
@@ -126,7 +126,7 @@ var controller = {
       product.save((err, result) => {
         if (err) {
           return res.status(400).json({
-            err: errorHandler(err),
+            error: errorHandler(err),
           });
         }
         res.json(result);
@@ -147,7 +147,7 @@ var controller = {
       .exec((err, products) => {
         if (err) {
           return res.status(400).json({
-            err: 'Products not found',
+            error: 'Products not found',
           });
         }
         res.json(products);
@@ -164,7 +164,7 @@ var controller = {
       .exec((err, products) => {
         if (err) {
           return res.status(400).json({
-            err: 'Products not found',
+            error: 'Products not found',
           });
         }
         res.json(products);
@@ -175,7 +175,7 @@ var controller = {
     Product.distinct('category', {}, (err, categories) => {
       if (err) {
         return res.status(400).json({
-          err: 'Products not found',
+          error: 'Products not found',
         });
       }
       res.json(categories);

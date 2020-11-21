@@ -7,7 +7,7 @@ var controller = {
     category.save((err, data) => {
       if (err) {
         return res.status(400).json({
-          err: errorHandler(err),
+          error: errorHandler(err),
         });
       }
       res.json({ data });
@@ -17,7 +17,7 @@ var controller = {
     Category.findById(id).exec((err, category) => {
       if (err || !category) {
         return res.status(400).json({
-          err: 'Category does not exist',
+          error: 'Category does not exist',
         });
       }
       req.category = category;
@@ -33,7 +33,7 @@ var controller = {
     category.save((err, data) => {
       if (err) {
         return res.status(400).json({
-          err: errorHandler(err),
+          error: errorHandler(err),
         });
       }
       res.json(data);
@@ -44,7 +44,7 @@ var controller = {
     category.remove((err, data) => {
       if (err) {
         return res.status(400).json({
-          err: errorHandler(err),
+          error: errorHandler(err),
         });
       }
       res.json({
@@ -56,7 +56,7 @@ var controller = {
     Category.find().exec((err, data) => {
       if (err) {
         return res.status(400).json({
-          err: errorHandler(err),
+          error: errorHandler(err),
         });
       }
       res.json(data);
